@@ -1,0 +1,51 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Data", "src\Skimur.Data\Skimur.Data.csproj", "{620A2009-80A7-44C2-961A-11A727530745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Web", "src\Skimur.Web\Skimur.Web.csproj", "{833BF931-33BA-4D46-A4CE-82DF139C2412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Common", "src\Skimur.Common\Skimur.Common.csproj", "{F54E1CE2-2502-4FAB-B0B3-9FEB06038D96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Logging", "src\Skimur.Logging\Skimur.Logging.csproj", "{210D41A3-8917-4B67-9F5B-263DFE051972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Tasks", "src\Skimur.Tasks\Skimur.Tasks.csproj", "{E180B1D0-4B76-4464-8685-435D61D16164}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Backend", "src\Skimur.Backend\Skimur.Backend.csproj", "{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{620A2009-80A7-44C2-961A-11A727530745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{620A2009-80A7-44C2-961A-11A727530745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{620A2009-80A7-44C2-961A-11A727530745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{620A2009-80A7-44C2-961A-11A727530745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833BF931-33BA-4D46-A4CE-82DF139C2412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833BF931-33BA-4D46-A4CE-82DF139C2412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833BF931-33BA-4D46-A4CE-82DF139C2412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833BF931-33BA-4D46-A4CE-82DF139C2412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F54E1CE2-2502-4FAB-B0B3-9FEB06038D96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F54E1CE2-2502-4FAB-B0B3-9FEB06038D96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F54E1CE2-2502-4FAB-B0B3-9FEB06038D96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F54E1CE2-2502-4FAB-B0B3-9FEB06038D96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{210D41A3-8917-4B67-9F5B-263DFE051972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210D41A3-8917-4B67-9F5B-263DFE051972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210D41A3-8917-4B67-9F5B-263DFE051972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210D41A3-8917-4B67-9F5B-263DFE051972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E180B1D0-4B76-4464-8685-435D61D16164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E180B1D0-4B76-4464-8685-435D61D16164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E180B1D0-4B76-4464-8685-435D61D16164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E180B1D0-4B76-4464-8685-435D61D16164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
