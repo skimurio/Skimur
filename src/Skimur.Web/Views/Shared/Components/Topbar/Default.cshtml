@@ -1,0 +1,33 @@
+﻿@model TopBarViewModel
+
+<div class="layout-topbar">
+    <div class="topbar-subscriptions btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">My Sub <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            @foreach(var sub in Model.SubscribedSubs)
+            {
+                <li><a href="#">@sub.ToLower()</a></li>
+            }
+        </ul>
+    </div>
+    <div class="topbar-defaults">
+        <ul>
+            <li>
+                <a href="/">front</a>
+            </li>
+            <li>
+                <a href="/s/all">all</a>
+            </li>
+            <li>
+                <a href="/s/random">random</a>
+            </li>
+            @foreach(var sub in Model.DefaultSubs)
+            {
+                <li>
+                    <a href="#">@sub.ToLower()</a>
+                </li>
+            }
+        </ul>
+    </div>
+    <a class="topbar-edit" href="#">edit</a>
+</div>

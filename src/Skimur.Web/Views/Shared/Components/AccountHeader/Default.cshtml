@@ -1,0 +1,44 @@
+﻿@model AccountHeaderViewModel
+
+@if (Model.CurrentUser != null)
+{
+    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+        <ul class="account-nav">
+            <li class="profile">
+                <a href="#">@Model.CurrentUser.UserName</a>
+            </li>
+            <li class="divider"></li>
+            <li class="inbox @(Model.UnreadMessages > 0 ? "has-mail" : null)">
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    @if (Model.UnreadMessages > 0)
+                    {
+                        <span class="inbox-count">@Model.UnreadMessages</span>
+                    }
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li class="manage">
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li class="logoff"><a href="@Url.Action("Logout", "Account")"
+                                  onclick="event.preventDefault();
+                                                     document.getElementById('logoutForm').submit();">Logout</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="account-nav">
+        <li class="register"><a href="#" id="register-link">Register</a></li>
+        <li class="divider"></li>
+        <li class="login"><a href="#" id="signin-link">Login</a></li>
+    </ul>
+}

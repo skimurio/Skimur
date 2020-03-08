@@ -1,0 +1,60 @@
+﻿@{
+    var controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    var action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="skimur, skimur.io, comment, post, link, submit, share" />
+    <meta name="description" content="Skimur: Speak, be heard." />
+    <title>@ViewData["Title"] - Skimur</title>
+
+    @RenderSection("Meta", required: false)
+
+    <!-- begin css -->
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false)
+    <!-- end css -->
+</head>
+
+<body class="@(controller)-@(action)">
+    @if (!string.IsNullOrEmpty(ViewBag.Announcements))
+    {
+        <div class="layout-announcement">
+            @Html.Raw(ViewBag.Announcements)
+        </div>
+    }
+
+    @await Component.InvokeAsync("Topbar")
+    <div class="layout-header">
+        <div class="layout-header-banner">
+            <a href="/" class="banner">
+                <img src="~/img/logo.png" />
+            </a>
+        </div>
+
+        @if (IsSectionDefined("header"))
+        {
+            <div class="layout-header-content">
+                @RenderSection("header")
+            </div>
+        }
+
+        <div class="layout-header-account">
+            @await Component.InvokeAsync("AccountHeader")
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <!-- begin scripts -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    <!-- end scripts -->
+
+    @{ await Html.RenderPartialAsync("_LoginModal"); }
+</body>
+
+</html>
