@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -135,6 +136,98 @@ namespace Skimur.Web.Controllers
         #endregion
 
         #region External Login 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            // Request a redirect to the external login provider.
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return new ChallengeResult(provider, properties);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null)
+        {
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                RedirectToAction(nameof(Login));
+            }
+
+            // Login the user with this external login provider if the user already has a login.
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation(5, "User logged in with {Name} provider.", info.LoginProvider);
+                return RedirectToLocal(returnUrl);
+            }
+
+            if (result.RequiresTwoFactor)
+            {
+                // todo: implement to factor auth
+                throw new NotImplementedException();
+            }
+
+            if (result.IsLockedOut)
+            {
+                return View("Lockout");
+            }
+            else
+            {
+                // if the user does not have an account, then ask the user to create an account.
+                ViewData["ReturnUrl"] = returnUrl;
+                ViewData["LoginProvider"] = info.LoginProvider;
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                var userName = info.Principal.FindFirstValue(ClaimTypes.Name);
+
+                // if username is not null, replace space with underscore
+                if (!string.IsNullOrEmpty(userName))
+                {
+                    userName = userName.Replace(" ", "_");
+                }
+
+                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = userName, Email = email });
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Manage");
+            }
+
+            if (ModelState.IsValid)
+            {
+                // Get the information about the user from the external login provider
+                var info = await _signInManager.GetExternalLoginInfoAsync();
+                if (info == null)
+                {
+                    return View("ExternalLoginFailure");
+                }
+
+                var user = new User { UserName = model.UserName, Email = model.Email, RegistrationIp = HttpContext.RemoteAddress() };
+                var result = await _userManager.CreateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    // send an email confirmation
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation(6, "User created an account using {Name} provider", info.LoginProvider);
+                }
+
+                AddErrors(result);
+            }
+
+            ViewData["ReturnUrl"] = returnUrl;
+            return View(model);
+        }
 
         #endregion
 
@@ -207,7 +300,13 @@ namespace Skimur.Web.Controllers
         #endregion
 
         #region Helpers
-        
+        private void AddErrors(IdentityResult result)
+        {
+            foreach(var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
         #endregion
     }
 }

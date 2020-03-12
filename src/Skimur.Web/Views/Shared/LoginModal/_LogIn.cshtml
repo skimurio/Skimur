@@ -35,5 +35,6 @@
     </div>
     <div class="col-sm-6">
         <h4>Or...</h4>
+        @{ await Html.RenderPartialAsync("_ExternalLoginsList", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl, Action = "Login" }); }
     </div>
 </div>

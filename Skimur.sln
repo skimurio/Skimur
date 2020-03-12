@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Tasks", "src\Skimur.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Backend", "src\Skimur.Backend\Skimur.Backend.csproj", "{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur", "src\Skimur\Skimur.csproj", "{53BDE89D-2ABE-4E97-96FE-49A2673D7E43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,5 +49,9 @@ Global
 		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53BDE89D-2ABE-4E97-96FE-49A2673D7E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53BDE89D-2ABE-4E97-96FE-49A2673D7E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53BDE89D-2ABE-4E97-96FE-49A2673D7E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53BDE89D-2ABE-4E97-96FE-49A2673D7E43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

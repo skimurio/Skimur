@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Backend\Skimur.Backend.csproj" />
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
+    <ProjectReference Include="..\Skimur\Skimur.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.2" />
@@ -18,5 +19,6 @@
     <PackageReference Include="ServiceStack.OrmLite" Version="5.8.0" />
     <PackageReference Include="Autofac" Version="5.1.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="ServiceStack.RabbitMq" Version="5.8.0" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Skimur.Settings;
 
 namespace Skimur.Common.Email
 {
-    public class EmailServerSettings
+    public class EmailServerSettings : ISettings
     {
         public EmailServerSettings()
         {

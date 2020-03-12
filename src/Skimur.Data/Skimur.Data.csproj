@@ -10,6 +10,8 @@
     <Folder Include="Utils\" />
     <Folder Include="ReadModel\" />
     <Folder Include="ReadModel\Impl\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Commands\Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ServiceStack.Interfaces" Version="5.8.0" />

@@ -37,6 +37,28 @@ namespace Skimur.Web.Infrastructure.Identity
             return Task.Factory.StartNew(() =>
             {
 
+                var result = _membershipService.ValidateUser(user);
+
+                if (result.Equals(UserValidationResult.InvalidEmail))
+                {
+                    return IdentityResult.Failed(new IdentityError { Description = "Invalid email address." });
+                }
+
+                if (result.Equals(UserValidationResult.EmailInUse))
+                {
+                    return IdentityResult.Failed(new IdentityError { Description = "The email is already in use." });
+                }
+
+                if (result.Equals(UserValidationResult.InvalidUserName))
+                {
+                    return IdentityResult.Failed(new IdentityError { Description = "Invalid username." });
+                }
+
+                if (result.Equals(UserValidationResult.CantChangeUsername))
+                {
+                    return IdentityResult.Failed(new IdentityError { Description = "The username is already in use." });
+                }
+
                 if (_membershipService.InsertUser(user))
                 {
                     return IdentityResult.Success;

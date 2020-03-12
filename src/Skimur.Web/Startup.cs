@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 using Skimur.Web.Infrastructure;
 using Skimur.Common.Utils;
 using Skimur.Common;
@@ -18,27 +14,42 @@ using Skimur.Data;
 using Skimur.Data.Models;
 using Skimur.Web.Infrastructure.Identity;
 using Skimur.Web.Services;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
+using Skimur.Web.Services.Impl;
 
 namespace Skimur.Web
 {
     public class Startup : IRegistrar
     {
-        public Startup(IConfiguration configuration)
+
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            // setup configuration sources
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
+
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSkimurBase(
+
+           services.AddSkimurBase(
                 this,
-                new DataRegistrar());
-                        
+                new DataRegistrar(),
+                new MessagingRegistrar());
+
             //services.AddControllersWithViews();
         }
 
@@ -79,9 +90,9 @@ namespace Skimur.Web
         public void Register(IServiceCollection services)
         {
             services.AddSingleton<IConfiguration>(provider => Configuration);
+            services.AddSingleton<IEmailSender, AuthMessageSender>();
 
             var useProxy = Configuration.GetValue<bool>("Skimur:proxy", false);
-
             if (useProxy)
             {
                 // we are on a unix or linux based system, setup for proxy support
@@ -106,7 +117,30 @@ namespace Skimur.Web
                 options.Password.RequireDigit = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 6;
-            });
+            }).AddDefaultTokenProviders();
+
+            var facebookAppId = Configuration["Skimur:Authentication:Facebook:AppId"];
+            var facebookAppSecret = Configuration["Skimur:Authenication:Facebook:AppSecret"];
+            if (!string.IsNullOrEmpty(facebookAppId) && !string.IsNullOrEmpty(facebookAppSecret))
+            {
+                services.AddAuthentication().AddFacebook(options =>
+                {
+                    options.AppId = facebookAppId;
+                    options.AppSecret = facebookAppSecret;
+                });
+            }
+
+            var googleClientId = Configuration["Skimur:Authentication:Google:ClientId"];
+            var googleClientSecret = Configuration["Skimur:Authentication:Google:ClientSecret"];
+            if (!string.IsNullOrEmpty(googleClientId) && !string.IsNullOrEmpty(googleClientSecret))
+            {
+                services.AddAuthentication().AddGoogle(options =>
+                {
+                    options.ClientId = googleClientId;
+                    options.ClientSecret = googleClientSecret;
+                    options.Scope.Add("https://www.googleapis.com/auth/plus.profile.emails.read");
+                });
+            }
 
             services.AddControllersWithViews();
 
@@ -121,5 +155,6 @@ namespace Skimur.Web
                 });
             });
         }
+
     }
 }
