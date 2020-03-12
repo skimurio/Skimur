@@ -19,6 +19,6 @@
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Skimur.Logging\Skimur.Logging.csproj" />
+    <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Skimur.Web.ViewModels.Account;
 using Skimur.Web.Infrastructure;
+using Skimur.Web.Services;
 using Skimur.Data.Models;
 
 namespace Skimur.Web.Controllers
@@ -18,15 +19,18 @@ namespace Skimur.Web.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
+            IEmailSender emailSender,
             ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
@@ -108,7 +112,7 @@ namespace Skimur.Web.Controllers
             if (ModelState.IsValid)
             {
                 var user = new User {
-                    UserName = model.Username,
+                    UserName = model.UserName,
                     Email = model.Email,
                     RegistrationIp = HttpContext.RemoteAddress()
                 };
@@ -125,8 +129,20 @@ namespace Skimur.Web.Controllers
                             code = code
                         }, protocol: HttpContext.Request.Scheme);
 
+                        var subject = "Confirm your account.";
+                        var message = "Hello " + model.UserName + ",<br/>Please confirm your account by " +
+                            "clicking this link: <a href=\"" + callbackUrl + "\">Confirm Account</a>";
+
+                        // send email to user
+                        await _emailSender.SendEmailAsync(model.Email, subject, message);
                     }
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation(3, "User created a new account with password");
+                    return RedirectToAction("Index", "Home");
                 }
+
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -242,8 +258,14 @@ namespace Skimur.Web.Controllers
                 return View("Error");
             }
 
-            // If we got this far, something failed, redisplay form
-            return View();
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return View("Error");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
         #endregion
@@ -262,6 +284,33 @@ namespace Skimur.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
+
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return View("ForgotPasswordConfirmation");
+                }
+
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("ResetPassword", "Account",
+                    new
+                    {
+                        userId = user.Id,
+                        code = code
+                    }, protocol: HttpContext.Request.Scheme);
+
+                var subject = "Reset Password";
+                var message = $"Hello {user.UserName},<br/>Recently you or someone else has request a password reset. " +
+                    $"You can reset your password using by clicking here: " +
+                    $"<a href=\"{callbackUrl}\">Reset Password</a>";
+
+                await _emailSender.SendEmailAsync(model.Email, subject, message);
+                return View("ForgotPasswordConfirmation");
+            }
+
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -289,13 +338,41 @@ namespace Skimur.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task <IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                }
+
+                var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                }
+
+                AddErrors(result);
+                return View();
+            }
+
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
         #endregion
 
-        #region Two Factor Auth
+        #region Two Factor Authentication
+
+        //todo: Add support for to factor authentication
 
         #endregion
 

@@ -10,7 +10,7 @@ namespace Skimur.Web.ViewModels.Account
 
         [Required]
         [Display(Name = "Username")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

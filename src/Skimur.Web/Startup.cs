@@ -35,7 +35,6 @@ namespace Skimur.Web
                 builder.AddUserSecrets<Startup>();
             }
 
-
             Configuration = builder.Build();
         }
 
@@ -120,7 +119,7 @@ namespace Skimur.Web
             }).AddDefaultTokenProviders();
 
             var facebookAppId = Configuration["Skimur:Authentication:Facebook:AppId"];
-            var facebookAppSecret = Configuration["Skimur:Authenication:Facebook:AppSecret"];
+            var facebookAppSecret = Configuration["Skimur:Authentication:Facebook:AppSecret"];
             if (!string.IsNullOrEmpty(facebookAppId) && !string.IsNullOrEmpty(facebookAppSecret))
             {
                 services.AddAuthentication().AddFacebook(options =>

@@ -17,6 +17,9 @@
     <Folder Include="Views\Shared\Components\AccountHeader\" />
     <Folder Include="Views\Shared\LoginModal\" />
     <Folder Include="Services\Impl\" />
+    <Folder Include="Controllers\Api\" />
+    <Folder Include="Views\Manage\" />
+    <Folder Include="ViewModels\Manage\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj">

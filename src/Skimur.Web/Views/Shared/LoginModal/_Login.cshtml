@@ -29,11 +29,12 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Sign in" class="btn btn-primary" /> <a href="#" class="pull-right">Forgot your password?</a>
+                <input type="submit" value="Login" class="btn btn-primary" /> <a href="#" class="pull-right">Forgot your password?</a>
             </div>
         }
     </div>
     <div class="col-sm-6">
         <h4>Or...</h4>
+        @{ await Html.RenderPartialAsync("_ExternalLoginsList", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl, Action = "Login" }); }
     </div>
 </div>

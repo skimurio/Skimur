@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="body-content">
+    <div class="container-fluid">
+        @if (IsSectionDefined("messages"))
+        {
+            @RenderSection("messages")
+        }
+        else
+        {
+            @Html.ErrorMessages()
+            @Html.SuccessMessages()
+        }
+        @RenderBody()
+        @{ await Html.RenderPartialAsync("_Footer"); }
+    </div>
+</div>
+
+@section scripts {
+    @RenderSection("scripts", false)
+}
+
+@section header {
+    @RenderSection("header", false)
+}
