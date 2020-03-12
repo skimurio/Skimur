@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Messaging\" />
+    <Folder Include="Messaging\RabbitMQ\" />
+    <Folder Include="Messaging\Handling\" />
+    <Folder Include="Settings\" />
+    <Folder Include="IO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ServiceStack" Version="5.8.0" />
+    <PackageReference Include="ServiceStack.RabbitMq" Version="5.8.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.1.2" />
+    <PackageReference Include="ServiceStack.Text" Version="5.8.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\Skimur.Logging\Skimur.Logging.csproj" />
+  </ItemGroup>
+</Project>

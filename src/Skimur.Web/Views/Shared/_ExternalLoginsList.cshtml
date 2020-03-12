@@ -1,0 +1,32 @@
+﻿@inject SignInManager<User> SignInManager
+
+@{
+    var loginProviders = await SignInManager.GetExternalAuthenticationSchemesAsync();
+    var providers = loginProviders.Where(x => x.DisplayName != null).ToList();
+    if (providers.Count == 0)
+    {
+        <div>
+            <p>
+                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+        </div>
+    }
+    else
+    {
+        <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@Model.ReturnUrl" method="post" class="form-horizontal" role="form">
+            <div>
+                <p>
+                    @foreach (var provider in providers)
+                    {
+
+                        <button type="submit" class="btn btn-block btn-social btn-@provider.ToString().ToLower()" name="provider" value="@provider" title="@Model.Action using your @provider.DisplayName account">
+                            <i class="fa fa-twitter"></i>
+                            @Model.Action with @provider.DisplayName
+                        </button>
+                    }
+                </p>
+            </div>
+        </form>
+    }
+}
