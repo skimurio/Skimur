@@ -63,6 +63,22 @@ namespace Skimur.Web.Infrastructure
             return urlHelper.Action("Register", "Account");
         }
 
+        public static string ForgotPassword(this IUrlHelper urlHelper)
+        {
+            return urlHelper.Action("ForgotPassword", "Account");
+        }
+
+        public static string AvatarUrl(this IUrlHelper urlHelper, string avatarIdentifier)
+        {
+            if (string.IsNullOrEmpty(avatarIdentifier))
+            {
+                return urlHelper.Content("~/img/avatar.jpg");
+            }
+
+            return urlHelper.Content("~/avatars/" + avatarIdentifier);
+        }
+
+
         public static string RouteUrl(this IUrlHelper urlHelper, string routeName)
         {
             return urlHelper.RouteUrl(new UrlRouteContext { RouteName = routeName });

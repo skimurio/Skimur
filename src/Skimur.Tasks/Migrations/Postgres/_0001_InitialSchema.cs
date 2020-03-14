@@ -147,9 +147,13 @@ $$ language sql immutable;");
                 name text,
                 description text,
                 sidebar_text text,
+                sidebar_text_formatted text NULL,
+                submission_text text NULL,
+                submission_text_formatted text NULL,
                 is_default boolean,
                 number_of_subscribers bigint,
                 type integer,
+                created_by uuid NULL,
                 CONSTRAINT subs_pkey PRIMARY KEY(id)
             );");
 
@@ -189,11 +193,24 @@ $$ language sql immutable;");
                 type integer,
                 title text,
                 content text,
+                content_formatted text NULL,
                 url text,
                 domain text,
                 send_replies boolean,
                 vote_up_count integer,
                 vote_down_count integer,
+                verdict integer NOT NULL DEFAULT 0,
+                approved_by uuid NULL,
+                removed_by uuid NULL,
+                verdict_message text NULL,
+                number_of_comments integer NOT NULL DEFAULT 0,
+                deleted boolean NOT NULL default false,
+                nsfw boolean NOT NULL default false,
+                mirrored text NULL,
+                in_all boolean NOT NULL default true,
+                sticky boolean NOT NULL DEFAULT false,
+                thumb text NULL,
+                media json NULL,
                 CONSTRAINT post_pkey PRIMARY KEY(id)
             );");
 
@@ -236,9 +253,11 @@ $$ language sql immutable;");
                 send_replies boolean,
                 vote_up_count integer,
                 vote_down_count integer,
-                deleted boolean,
+                deleted boolean NOT NULL default false,
                 sort_confidence numeric,
                 sort_qa numeric,
+                nsfw boolean NOT NULL default false,
+                in_all boolean NOT NULL default true,
                 CONSTRAINT comments_pkey PRIMARY KEY (id)
             );");
 
@@ -272,6 +291,33 @@ $$ language sql immutable;");
                 expires timestamp without time zone,
                 created_at timestamp without time zone,
                 CONSTRAINT ip_bans_pkey PRIMARY KEY(id)
+            );");
+
+            conn.Execute(@"
+            CREATE TABLE moderator_invites
+            (
+                id uuid NOT NULL,
+                user_id uuid NOT NULL,
+                sub_id uuid NOT NULL,
+                invited_by uuid NULL,
+                invited_on timestamp without time zone NOT NULL,
+                permissions integer NOT NULL,
+                CONSTRAINT moderator_invites_pkey PRIMARY KEY (id)
+            );");
+
+            conn.Execute(@"
+            CREATE TABLE sub_css
+            (
+                id uuid NOT NULL,
+                sub_id uuid NOT NULL,
+                type int NOT NULL,
+                embedded text NULL,
+                external_css text NULL,
+                github_css_project_name text NULL,
+                github_css_project_tag text NULL,
+                github_less_project_name text NULL,
+                github_less_project_tag text NULL,
+                CONSTRAINT sub_css_pkey PRIMARY KEY (id)
             );");
         }
     }

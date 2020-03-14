@@ -6,58 +6,80 @@ namespace Skimur.Data.Models
     [Alias("Posts")]
     public class Post
     {
-        /// <summary>
-        /// The unique id of the post
-        /// </summary>
         public Guid Id { get; set; }
 
-        /// <summary>
-        /// The id of the sub this post belongs to
-        /// </summary>
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime? LastEditDate { get; set; }
+
+        public string Slug { get; set; }
+
         public Guid SubId { get; set; }
 
-        /// <summary>
-        /// The id of the user this post belongs to
-        /// </summary>
         public Guid UserId { get; set; }
 
-        /// <summary>
-        /// The title of the post
-        /// </summary>
+        public string UserIp { get; set; }
+
+        public int Type { get; set; }
+
+        [Ignore]
+        public PostType PostType
+        {
+            get { return (PostType)Type; }
+            set { Type = (int)value; }
+        }
+
         public string Title { get; set; }
 
-        /// <summary>
-        /// The content of the post
-        /// </summary>
         public string Content { get; set; }
 
-        //public int Type { get; set; }
+        public string ContentFormatted { get; set; }
 
-        public PostType PostType { get; set; }
+        public string Url { get; set; }
 
-        public PostState PostState { get; set; }
+        public string Domain { get; set; }
 
-        /// <summary>
-        /// The date and time this post was created
-        /// </summary>
-        public DateTime CreatedAt { get; set; }
+        public bool SendReplies { get; set; }
 
         public int VoteUpCount { get; set; }
 
         public int VoteDownCount { get; set; }
 
+        public int Verdict { get; set; }
+
+        public string VerdictMessage { get; set; }
+
+        public Guid? ApprovedBy { get; set; }
+
+        public Guid? RemovedBy { get; set; }
+
+        public int NumberOfReports { get; set; }
+
+        public bool IgnoreReports { get; set; }
+
+        public int NumberOfComments { get; set; }
+
         public bool Deleted { get; set; }
 
         public bool Nsfw { get; set; }
 
-        public bool Mirrored { get; set; }
+        public string Mirrored { get; set; }
 
         public bool InAll { get; set; }
 
         public bool Sticky { get; set; }
 
+        public string Thumb { get; set; }
+
         [CustomField("json")]
         public string Media { get; set; }
+
+        [Ignore]
+        public Verdict PostVerdict
+        {
+            get { return (Verdict)Verdict; }
+            set { Verdict = (int)value; }
+        }
     }
 
     public enum PostType
@@ -67,7 +89,7 @@ namespace Skimur.Data.Models
         Image = 2
     }
 
-    public enum PostState
+    public enum Verdict
     {
         None = 0,
         ModApproved = 1,

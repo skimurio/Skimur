@@ -20,6 +20,7 @@
     <Folder Include="Controllers\Api\" />
     <Folder Include="Views\Manage\" />
     <Folder Include="ViewModels\Manage\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj">

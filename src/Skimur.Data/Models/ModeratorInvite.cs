@@ -1,8 +1,9 @@
 ﻿using System;
 using ServiceStack.DataAnnotations;
+
 namespace Skimur.Data.Models
 {
-    [Alias("ModeratorInvite")]
+    [Alias("ModeratorInvites")]
     public class ModeratorInvite
     {
         /// <summary>
