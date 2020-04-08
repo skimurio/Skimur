@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Jering.Javascript.NodeJS" Version="5.4.0" />
+    <PackageReference Include="Markdig" Version="0.18.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj" />
+    <ProjectReference Include="..\Skimur\Skimur.csproj" />
+  </ItemGroup>
+</Project>
