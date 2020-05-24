@@ -13,8 +13,10 @@ namespace Skimur.Data
         {
             services.AddSingleton<IMembershipService, MembershipService>();
             services.AddSingleton<IPasswordManager, PasswordManager>();
+            services.AddSingleton<IModerationService, ModerationService>();
             services.AddSingleton<ISubService, SubService>();
             services.AddSingleton<ISubDao, SubDao>();
+            services.AddSingleton<IPermissionService, PermissionService>();
         }
 
         public int Order

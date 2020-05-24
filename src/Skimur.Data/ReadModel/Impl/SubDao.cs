@@ -11,7 +11,7 @@ namespace Skimur.Data.ReadModel.Impl
     {
         public SubDao(IDbConnectionProvider conn, IMapper mapper) : base(conn, mapper)
         {
-
+            
         }
     }
 }

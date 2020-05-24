@@ -8,6 +8,8 @@ namespace Skimur.Common.Utils
 {
     public static class TimeHelper
     {
+        public static Func<DateTime> CurrentTime = () => DateTime.UtcNow;
+
         private const double Tolerance = 0.01;
 
         private static string IsPlural(int amount)
