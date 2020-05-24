@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Jering.Javascript.NodeJS;
 using Skimur.Common.Utils;
+using Skimur.Markdown.Compiler;
 
 namespace Skimur.Markdown
 {
@@ -9,8 +9,10 @@ namespace Skimur.Markdown
 
         public void Register(IServiceCollection services)
         {
-            services.AddNodeJS();
+            // register markdig
+            services.AddSingleton<IMarkdownCompiler, MarkdownCompiler>();
         }
+
 
         public int Order { get { return 0; } }
     }

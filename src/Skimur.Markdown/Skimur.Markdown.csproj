@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Extensions\Mentions\" />
+    <Folder Include="Compiler\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Jering.Javascript.NodeJS" Version="5.4.0" />
