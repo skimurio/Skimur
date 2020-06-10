@@ -1,0 +1,1 @@
+web: cd $HOME/heroku_output/Skimur.Web && dotnet ./Skimur.Web.dll --server.urls http://+:$PORT ${CORE_ENVIRONMENT}
