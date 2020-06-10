@@ -12,4 +12,4 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
 WORKDIR /app
 COPY --from=build /app .
-ENTRYPOINT ["dotnet", "Skimur.Web.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT ./Skimur.Web
