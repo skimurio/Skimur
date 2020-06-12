@@ -15,6 +15,8 @@ using Skimur.Data.Models;
 using Skimur.Web.Infrastructure.Identity;
 using Skimur.Web.Services;
 using Skimur.Web.Services.Impl;
+using Skimur.IO;
+using Skimur.Settings;
 
 namespace Skimur.Web
 {
@@ -101,6 +103,13 @@ namespace Skimur.Web
 
                 });
             }
+
+            services.AddSingleton<IFileSystem>(provider =>
+            {
+                var webSettings = provider.GetService<ISettingsProvider<WebSettings>>();
+                var dataDirectory = provider.GetService<IPathResolver>().Resolve(webSettings.Settings.DataDirectory);
+                return new LocalFileSystem(dataDirectory);
+            });
 
             // auth services
             services.AddScoped<ApplicationUserStore>();
