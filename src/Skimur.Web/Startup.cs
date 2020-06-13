@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using Skimur.Web.Infrastructure;
 using Skimur.Common.Utils;
@@ -110,6 +109,8 @@ namespace Skimur.Web
                 var dataDirectory = provider.GetService<IPathResolver>().Resolve(webSettings.Settings.DataDirectory);
                 return new LocalFileSystem(dataDirectory);
             });
+
+            services.AddSingleton<IAvatarService, AvatarService>();
 
             // auth services
             services.AddScoped<ApplicationUserStore>();

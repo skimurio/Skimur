@@ -24,5 +24,11 @@ namespace Skimur.Web.Services.Impl
 
             return Task.FromResult(0);
         }
+
+        public Task SendSmsAsync(string number, string message)
+        {
+            // TODO: create sms provider implementation
+            return Task.FromResult(0);
+        }
     }
 }

@@ -78,7 +78,6 @@ namespace Skimur.Web.Infrastructure
             return urlHelper.Content("~/avatars/" + avatarIdentifier);
         }
 
-
         public static string RouteUrl(this IUrlHelper urlHelper, string routeName)
         {
             return urlHelper.RouteUrl(new UrlRouteContext { RouteName = routeName });

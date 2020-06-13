@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Skimur.IO;
+using Skimur.Web.Utils;
 
 namespace Skimur.Web.Services
 {
@@ -45,22 +46,24 @@ namespace Skimur.Web.Services
                             throw new Exception("Uploaded file is not recognized as an image.");
                         }
 
-                        var tempFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                        var fileName = key + ".png";
 
                         try
                         {
-                           
+                            // Check if previous avatar exists
+                            var avatar = _avatarDirectoryInfo.GetFile(fileName);
+                            if (avatar.Exists)
+                            {
+                                // delete the file
+                                avatar.Delete();
+                            }
+
+                            // finally, build the image
+                            AvatarBuilder.Build(readStream, fileName);
                         }
                         catch (Exception ex)
                         {
                             throw new Exception("Uploaded file is not recognized as a valid image.", ex);
-                        }
-                        finally
-                        {
-                            if (File.Exists(tempFile))
-                            {
-                                File.Delete(tempFile);
-                            }
                         }
 
                         return key;

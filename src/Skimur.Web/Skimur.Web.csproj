@@ -21,6 +21,7 @@
     <Folder Include="Views\Manage\" />
     <Folder Include="ViewModels\Manage\" />
     <Folder Include="Settings\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj">
@@ -42,5 +43,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.2" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-rc0002" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0009" />
   </ItemGroup>
 </Project>
