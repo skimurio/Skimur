@@ -20,7 +20,6 @@
     <Folder Include="Controllers\Api\" />
     <Folder Include="Views\Manage\" />
     <Folder Include="ViewModels\Manage\" />
-    <Folder Include="Settings\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +30,9 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Skimur.Markdown\Skimur.Markdown.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

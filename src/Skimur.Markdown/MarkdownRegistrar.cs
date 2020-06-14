@@ -4,7 +4,7 @@ using Skimur.Markdown.Compiler;
 
 namespace Skimur.Markdown
 {
-    public class Registrar : IRegistrar
+    public class MarkdownRegistrar : IRegistrar
     {
 
         public void Register(IServiceCollection services)

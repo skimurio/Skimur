@@ -16,6 +16,7 @@ using Skimur.Web.Services;
 using Skimur.Web.Services.Impl;
 using Skimur.IO;
 using Skimur.Settings;
+using Skimur.Markdown;
 
 namespace Skimur.Web
 {
@@ -45,10 +46,11 @@ namespace Skimur.Web
         public void ConfigureServices(IServiceCollection services)
         {
 
-           services.AddSkimurBase(
-                this,
-                new DataRegistrar(),
-                new MessagingRegistrar());
+            services.AddSkimurBase(
+                 this,
+                 new MarkdownRegistrar(),
+                 new DataRegistrar(),
+                 new MessagingRegistrar());
 
             //services.AddControllersWithViews();
         }
@@ -90,7 +92,6 @@ namespace Skimur.Web
         public void Register(IServiceCollection services)
         {
             services.AddSingleton<IConfiguration>(provider => Configuration);
-            services.AddSingleton<IEmailSender, AuthMessageSender>();
 
             var useProxy = Configuration.GetValue<bool>("Skimur:proxy", false);
             if (useProxy)
@@ -103,14 +104,14 @@ namespace Skimur.Web
                 });
             }
 
+            services.AddSingleton<IEmailSender, AuthMessageSender>();
+            services.AddSingleton<IAvatarService, AvatarService>();
             services.AddSingleton<IFileSystem>(provider =>
             {
                 var webSettings = provider.GetService<ISettingsProvider<WebSettings>>();
                 var dataDirectory = provider.GetService<IPathResolver>().Resolve(webSettings.Settings.DataDirectory);
                 return new LocalFileSystem(dataDirectory);
             });
-
-            services.AddSingleton<IAvatarService, AvatarService>();
 
             // auth services
             services.AddScoped<ApplicationUserStore>();

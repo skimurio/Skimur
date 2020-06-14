@@ -18,7 +18,7 @@ namespace Skimur.Web.Infrastructure
 
         public WebSettings()
         {
-            DataDirectory = Path.Combine("~", "Data");
+            DataDirectory = Path.Combine("~","Data");
             ThumbnailCache = Path.Combine("~", "ThumbnailCache");
             ForceHttps = false;
             ForceDomain = null;

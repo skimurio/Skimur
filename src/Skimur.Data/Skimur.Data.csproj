@@ -12,6 +12,9 @@
     <Folder Include="ReadModel\Impl\" />
     <Folder Include="Commands\" />
     <Folder Include="Commands\Handlers\" />
+    <Folder Include="Settings\" />
+    <Folder Include="Events\" />
+    <Folder Include="Events\Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ServiceStack.Interfaces" Version="5.8.0" />
@@ -25,5 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj" />
     <ProjectReference Include="..\Skimur.Backend\Skimur.Backend.csproj" />
+    <ProjectReference Include="..\Skimur.Markdown\Skimur.Markdown.csproj" />
   </ItemGroup>
 </Project>
