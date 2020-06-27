@@ -4,7 +4,7 @@
 <div class="header-nav">
     <div class="hidden-xs">
         <ul class="nav nav-tabs">
-            <li class="@(navigationKey == "privacy" ? "active" : null)"><a href="">Privacy policy</a></li>
+            <li class="@(navigationKey == "privacy" ? "active" : null)"><a href="@Url.Privacy()">Privacy Policy</a></li>
             <li class="@(navigationKey == "useragreement" ? "active" : null)"><a href="">User agreement</a></li>
             <li class="@(navigationKey == "contentpolicy" ? "active" : null)"><a href="">Content policy</a></li>
         </ul>
@@ -16,7 +16,7 @@
                     @ViewBag.Title <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="@(navigationKey == "privacy" ? "active" : null)"><a href="">Privacy policy</a></li>
+                    <li class="@(navigationKey == "privacy" ? "active" : null)"><a href="@Url.Privacy()">Privacy Policy</a></li>
                     <li class="@(navigationKey == "useragreement" ? "active" : null)"><a href="">User agreement</a></li>
                     <li class="@(navigationKey == "contentpolicy" ? "active" : null)"><a href="">Content policy</a></li>
                 </ul>

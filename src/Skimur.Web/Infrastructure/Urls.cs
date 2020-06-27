@@ -78,6 +78,12 @@ namespace Skimur.Web.Infrastructure
             return urlHelper.Content("~/avatars/" + avatarIdentifier);
         }
 
+        // policies
+        public static string Privacy(this IUrlHelper urlHelper)
+        {
+            return urlHelper.RouteUrl("Privacy");
+        }
+
         public static string RouteUrl(this IUrlHelper urlHelper, string routeName)
         {
             return urlHelper.RouteUrl(new UrlRouteContext { RouteName = routeName });

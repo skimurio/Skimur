@@ -155,6 +155,7 @@ namespace Skimur.Web
             services.AddControllersWithViews();
 
             services.AddScoped<IUserContext, UserContext>();
+            services.AddScoped<IContextService, ContextService>();
 
             services.AddSession();
             services.AddAuthorization(options =>

@@ -21,6 +21,7 @@
     <Folder Include="Views\Manage\" />
     <Folder Include="ViewModels\Manage\" />
     <Folder Include="Utils\" />
+    <Folder Include="Views\Subs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj">

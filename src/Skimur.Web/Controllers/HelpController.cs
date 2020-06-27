@@ -13,6 +13,7 @@ namespace Skimur.Web.Controllers
 
         public IActionResult Privacy()
         {
+            ViewBag.ManageNavigationKey = "privacy";
             return View();
         }
 
