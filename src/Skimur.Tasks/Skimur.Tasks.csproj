@@ -21,6 +21,7 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Migrations\Postgres\" />
+    <Folder Include="Migrations\Casandra\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

@@ -5,6 +5,7 @@ using Skimur.Common;
 using Skimur.Data.Services;
 using Skimur.Data.Models;
 using Skimur.Backend.Sql;
+using ServiceStack.OrmLite;
 
 namespace Skimur.Tasks
 {
@@ -61,6 +62,26 @@ namespace Skimur.Tasks
             {
                 Console.WriteLine($"Failed to create a role with the name {role.Name}.");
             }
+        }
+
+        [ArgActionMethod, ArgDescription("Toggle admin status for a user")]
+        public void ToggleUserAdmin(string username, bool isAdmin)
+        {
+            var connectionProvider = SkimurContext.ServiceProvider.GetRequiredService<IDbConnectionProvider>();
+
+            // attempt to find the user with the provided username
+            var user = connectionProvider.Perform(conn => conn.Single<User>(x => x.UserName.ToLower() == username.ToLower()));
+            if (user == null)
+            {
+                // no user found
+                Console.WriteLine("No user with that username found.");
+                return;
+            }
+
+            // update user admin status
+            connectionProvider.Perform(conn => conn.Update<User>(new { IsAdmin = isAdmin }, x => x.Id == user.Id));
+
+            Console.WriteLine($"Successfully updated admin status for the user {user.UserName}");
         }
     }
 }
