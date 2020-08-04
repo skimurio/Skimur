@@ -17,7 +17,7 @@ namespace Skimur.Data
             services.AddSingleton<ISubService, SubService>();
             services.AddSingleton<ISubDao, SubDao>();
             services.AddSingleton<IPermissionService, PermissionService>();
-
+            services.AddSingleton<IPostThumbnailService, PostThumbnailService>();
         }
 
         public int Order

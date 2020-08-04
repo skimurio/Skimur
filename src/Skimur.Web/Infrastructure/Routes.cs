@@ -9,7 +9,7 @@ namespace Skimur.Web.Infrastructure
         public static object UrlParameter { get; private set; }
 
         public static void Register(IEndpointRouteBuilder endpoints)
-        { 
+        {
             endpoints.MapRouteShim(
                 name: "Default",
                 url: "{controller}/{action}/{id?}",

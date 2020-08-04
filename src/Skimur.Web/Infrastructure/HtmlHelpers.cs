@@ -103,5 +103,43 @@ namespace Skimur.Web.Infrastructure
 
             return new HtmlString(html.ToString());
         }
+
+        public static IList<SelectListItem> ItemsForEnum<TModel, TProperty>(this IHtmlHelper<TModel> helper, Expression<Func<TModel, TProperty>> expression)
+        {
+            var expressionProvider = helper.ViewContext.HttpContext.RequestServices.GetService(typeof(ModelExpressionProvider)) as ModelExpressionProvider;
+            var metadata = expressionProvider.CreateModelExpression(helper.ViewData, expression);
+
+            var enumType = metadata.Metadata.ModelType;
+            var isNullable = false;
+
+            {
+                var underlyingType = Nullable.GetUnderlyingType(enumType);
+                if (underlyingType != null)
+                {
+                    isNullable = true;
+                    enumType = underlyingType;
+                }
+            }
+
+            var items = Enum.GetValues(typeof(TProperty)).Cast<TProperty>().Select(x => new SelectListItem
+            {
+                Text = GetEnumDescription(x),
+                Value = x.ToString(),
+                Selected = x.Equals(metadata.Model)
+            }).ToList();
+
+            if (isNullable)
+            {
+                items.Insert(0, new SelectListItem { Text = "", Value = "", Selected = metadata.Model == null });
+            }
+
+            return items;
+        }
+
+        public static string GetEnumDescription<TEnum>(TEnum value)
+        {
+            var attributes = (DescriptionAttribute[])value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
+            return (attributes.Length > 0) ? attributes[0].Description : value.ToString();
+        }
     }
 }

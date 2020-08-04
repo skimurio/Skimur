@@ -68,8 +68,6 @@ namespace Skimur.Web.Controllers
             }
 
             
-
-
             return View();
         }
     }
