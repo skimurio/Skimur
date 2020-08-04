@@ -10,6 +10,7 @@
     <Folder Include="Messaging\Handling\" />
     <Folder Include="Settings\" />
     <Folder Include="IO\" />
+    <Folder Include="PriorityQueue\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="5.8.0" />
