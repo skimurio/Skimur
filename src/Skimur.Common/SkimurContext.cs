@@ -66,7 +66,16 @@ namespace Skimur.Common
             services.AddSingleton(provider =>
             {
                 var configuration = provider.GetService<IConfiguration>();
+
+
                 var rabbitMqHost = configuration.GetValue<string>("Skimur:Data:RabbitMQHost");
+
+                if (EnvironmentUtils.IsHeroku)
+                {
+                    // override host and use CLOUDAMQP_URL variable
+                    rabbitMqHost = Environment.GetEnvironmentVariable("CLOUDAMQP_URL");
+                }
+
                 if (string.IsNullOrEmpty(rabbitMqHost))
                 {
                     throw new Exception("You must provide a 'Skimur:Data:RabbitMQHost' app setting.");
