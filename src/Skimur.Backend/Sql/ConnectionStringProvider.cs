@@ -10,30 +10,30 @@ namespace Skimur.Backend.Sql
 
         public ConnectionStringProvider(IConfiguration configuration)
         {
+            // detect if we are running on heroku
+            if (IsHeroku)
+            {
+                var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+                var databaseUri = new Uri(databaseUrl);
+                var userInfo = databaseUri.UserInfo.Split(':');
+
+                var builder = new NpgsqlConnectionStringBuilder
+                {
+                    Host = databaseUri.Host,
+                    Port = databaseUri.Port,
+                    Username = userInfo[0],
+                    Password = userInfo[1],
+                    Database = databaseUri.LocalPath.TrimStart('/')
+                };
+
+                _connectionString = builder.ToString();
+                return;
+            }
+
             var connection = configuration.GetValue<string>("Skimur:Data:Postgres", null);
 
             if (string.IsNullOrEmpty(connection))
             {
-                // check if DATABASE_URL environment variable exists, if so use that
-                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DATABASE_URL")))
-                {
-                    var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-                    var databaseUri = new Uri(databaseUrl);
-                    var userInfo = databaseUri.UserInfo.Split(':');
-
-                    var builder = new NpgsqlConnectionStringBuilder
-                    {
-                        Host = databaseUri.Host,
-                        Port = databaseUri.Port,
-                        Username = userInfo[0],
-                        Password = userInfo[1],
-                        Database = databaseUri.LocalPath.TrimStart('/')
-                    };
-
-                    _connectionString = builder.ToString();
-                    return;
-                }
-
                 return;
             }
 
@@ -48,6 +48,14 @@ namespace Skimur.Backend.Sql
         public string ConnectionString
         {
             get { return _connectionString; }
+        }
+
+        private bool IsHeroku
+        {
+            get
+            {
+                return Environment.GetEnvironmentVariable("HEROKU") == "true";
+            }
         }
     }
 }

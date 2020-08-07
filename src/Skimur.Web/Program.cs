@@ -16,14 +16,12 @@ namespace Skimur.Web
         {
             var host = CreateHostBuilder(args).Build();
 
-#if DEBUG
             var config = host.Services.GetRequiredService<IConfiguration>();
 
             foreach (var c in config.AsEnumerable())
             {
                 Console.WriteLine(c.Key + " = " + c.Value);
             }
-#endif
 
             host.Run();
         }
