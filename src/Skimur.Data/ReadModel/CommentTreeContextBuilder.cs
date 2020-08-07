@@ -6,7 +6,7 @@ using Skimur.PriorityQueue;
 
 namespace Skimur.Data.ReadModel
 {
-    public class CommentTreeContextBuilder : ICommentTreeBuilder
+    public class CommentTreeContextBuilder : ICommentTreeContextBuilder
     {
         public CommentTreeContext Build(CommentTree commentTree,
             Dictionary<Guid, double> sorter,
@@ -24,7 +24,7 @@ namespace Skimur.Data.ReadModel
             }
 
             var result = new CommentTreeContext();
-            result.MaxDepth = maxDepth;
+            result.MaxDepth = maxDepth.Value; //todo: make sure we have a value?
 
             if (children != null && children.Count == 0)
             {
@@ -78,7 +78,7 @@ namespace Skimur.Data.ReadModel
             }
             else
             {
-                var topLevelComments = commentTree.Tree.Contains(Guid.Empty)
+                var topLevelComments = commentTree.Tree.ContainsKey(Guid.Empty)
                     ? commentTree.Tree[Guid.Empty]
                     : new List<Guid>();
                 UpdateCandidates(candidates, sorter, topLevelComments);
