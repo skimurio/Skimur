@@ -15,11 +15,33 @@ namespace Skimur.Web
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+
+#if DEBUG
+            var config = host.Services.GetRequiredService<IConfiguration>();
+
+            foreach (var c in config.AsEnumerable())
+            {
+                Console.WriteLine(c.Key + " = " + c.Value);
+            }
+#endif
+
             host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    config.AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", optional: true);
+                    config.AddEnvironmentVariables();
+
+                    if (hostingContext.HostingEnvironment.IsDevelopment())
+                    {
+                        config.AddUserSecrets<Startup>();
+                    }
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
