@@ -27,10 +27,7 @@ namespace Skimur.Backend.Sql
                         Port = databaseUri.Port,
                         Username = userInfo[0],
                         Password = userInfo[1],
-                        Database = databaseUri.LocalPath.TrimStart('/'),
-                        SslMode = SslMode.Require,
-                        TrustServerCertificate = true
-
+                        Database = databaseUri.LocalPath.TrimStart('/')
                     };
 
                     _connectionString = builder.ToString();
