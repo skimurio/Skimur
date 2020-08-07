@@ -35,7 +35,7 @@ namespace Skimur.Web
                     config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                     config.AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", optional: true);
-                    config.AddEnvironmentVariables();
+                    config.AddEnvironmentVariables(prefix: "SKIMUR_");
 
                     if (hostingContext.HostingEnvironment.IsDevelopment())
                     {
