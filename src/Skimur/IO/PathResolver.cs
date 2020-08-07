@@ -21,5 +21,6 @@ namespace Skimur.IO
 
             return Path.GetFullPath(Path.Combine(appEnv.ApplicationBasePath, path));
         }
+
     }
 }
