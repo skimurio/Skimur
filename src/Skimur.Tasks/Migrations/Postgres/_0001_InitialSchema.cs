@@ -151,8 +151,10 @@ $$ language sql immutable;");
                 submission_text text NULL,
                 submission_text_formatted text NULL,
                 is_default boolean,
-                number_of_subscribers bigint,
+                subscribers bigint,
                 type integer,
+                is_nsfw boolean,
+                in_all boolean,
                 created_by uuid NULL,
                 CONSTRAINT subs_pkey PRIMARY KEY(id)
             );");

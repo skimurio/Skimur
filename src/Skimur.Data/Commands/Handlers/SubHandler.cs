@@ -89,7 +89,6 @@ namespace Skimur.Data.Commands.Handlers
                     response.Error = "Your account is too new to create a sub.";
                     return response;
                 }
-
                 
                 // make sure the requested sub doesn't already exist in the database
                 if (_subService.GetSubByName(command.Name) != null)

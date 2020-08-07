@@ -58,6 +58,11 @@ namespace Skimur.Web.Infrastructure
             return urlHelper.Action("Create", "Subs");
         }
 
+        public static string Sub(this IUrlHelper urlHelper, string subName)
+        {
+            return urlHelper.RouteUrl("Sub", new { subName });
+        }
+
         public static string Login(this IUrlHelper urlHelper)
         {
             return urlHelper.Action("Login", "Account");

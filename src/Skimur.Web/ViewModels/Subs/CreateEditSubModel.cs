@@ -23,7 +23,7 @@ namespace Skimur.Web.ViewModels.Subs
         public SubType SubType { get; set; }
 
         [Display(Name = "Is default")]
-        public bool IsDefault { get; set; } = false;
+        public bool? IsDefault { get; set; }
 
         [Display(Name = "Show in /s/all?")]
         public bool InAll { get; set; }

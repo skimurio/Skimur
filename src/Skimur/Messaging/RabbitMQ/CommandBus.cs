@@ -47,6 +47,7 @@ namespace Skimur.Messaging.RabbitMQ
                 });
 
                 IMessage<TResponse> responseMsg = client.Get<TResponse>(replyToMq, TimeSpan.FromSeconds(20));
+
                 client.Ack(responseMsg);
                 return responseMsg.GetBody();
             }

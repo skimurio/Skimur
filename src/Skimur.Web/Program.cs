@@ -24,6 +24,8 @@ namespace Skimur.Web
                 Console.WriteLine(c.Key + " = " + c.Value);
             }
 #endif
+            // this will start the command listeners for subs, email, etc.
+            host.Services.GetService<Messaging.IBusLifetime>();
 
             host.Run();
         }
