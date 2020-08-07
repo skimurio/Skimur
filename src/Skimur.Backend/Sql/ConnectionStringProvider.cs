@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 
 namespace Skimur.Backend.Sql
 {
@@ -13,6 +14,26 @@ namespace Skimur.Backend.Sql
 
             if (string.IsNullOrEmpty(connection))
             {
+                // check if DATABASE_URL environment variable exists, if so use that
+                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DATABASE_URL")))
+                {
+                    var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+                    var databaseUri = new Uri(databaseUrl);
+                    var userInfo = databaseUri.UserInfo.Split(':');
+
+                    var builder = new NpgsqlConnectionStringBuilder
+                    {
+                        Host = databaseUri.Host,
+                        Port = databaseUri.Port,
+                        Username = userInfo[0],
+                        Password = userInfo[1],
+                        Database = databaseUri.LocalPath.TrimStart('/')
+                    };
+
+                    _connectionString = builder.ToString();
+                    return;
+                }
+
                 return;
             }
 
