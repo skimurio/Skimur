@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Skimur.PriorityQueue
 {
@@ -62,14 +60,14 @@ namespace Skimur.PriorityQueue
             }
         }
 
-        public IEnumerable<T> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             return data.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return data.GetEnumerator():
+            return data.GetEnumerator();
         }
     }
 }

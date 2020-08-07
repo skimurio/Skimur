@@ -122,7 +122,7 @@ namespace Skimur.Data.ReadModel
         {
             foreach(var comment in comments)
             {
-                candidates.Enqueue(new CommentQueue(comment, sorter.ContainsKey(comment) ? sorter[comment] : 0))
+                candidates.Enqueue(new CommentQueue(comment, sorter.ContainsKey(comment) ? sorter[comment] : 0));
             }
         }
 

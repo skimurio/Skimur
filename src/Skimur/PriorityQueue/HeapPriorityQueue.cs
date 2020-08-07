@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Skimur.PriorityQueue
 {
@@ -387,7 +385,7 @@ namespace Skimur.PriorityQueue
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 1; <= _numNodes; i++)
+            for (int i = 1; i <= _numNodes; i++)
             {
                 yield return _nodes[i];
             }
@@ -411,7 +409,7 @@ namespace Skimur.PriorityQueue
                 {
                     int childLeftIndex = 2 * i;
                     if (childLeftIndex < _nodes.Length && _nodes[childLeftIndex] != null
-                        && HasHigherPriority(_nodes[childLeftIndex], _nodes[i))
+                        && HasHigherPriority(_nodes[childLeftIndex], _nodes[i]))
                     {
                         return false;
                     }
