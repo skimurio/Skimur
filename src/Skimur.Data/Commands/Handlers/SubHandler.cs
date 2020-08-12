@@ -128,7 +128,7 @@ namespace Skimur.Data.Commands.Handlers
                     SubType = command.Type,
                     CreatedBy = user.Id,
                     InAll = command.InAll,
-                    Nsfw = command.Nsfw
+                    IsNsfw = command.Nsfw
                 };
 
                 // only admins can configure default subs

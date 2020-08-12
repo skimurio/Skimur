@@ -33,7 +33,7 @@ namespace Skimur.Data.Services.Impl
                     query.Where(x => x.Name.Contains(searchText)).OrderBy(x => x.Name);
 
                 if (nsfw.HasValue)
-                    query.Where(x => x.Nsfw == nsfw.Value);
+                    query.Where(x => x.IsNsfw == nsfw.Value);
 
                 var totalCount = conn.Count(query);
 

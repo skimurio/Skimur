@@ -69,8 +69,7 @@ namespace Skimur.Data.Models
         /// <summary>
         /// Determines if this is an nsfw sub
         /// </summary>
-        [Alias("IsNsfw")]
-        public bool Nsfw { get; set; }
+        public bool IsNsfw { get; set; }
 
         /// <summary>
         /// determins if this sub is in /s/all
