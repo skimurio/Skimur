@@ -6,7 +6,7 @@ namespace Skimur.Data.Services
 {
     public interface ISubUserBanService
     {
-        SeekedList<SubUserBan> GetBannedUsersInSub(Guid subId, string userName = null, int? skip = null, int? take = null);
+        SeekedList<SubUserBan> GetBannedUsersInSub(Guid subId, Guid? userId = null, int? skip = null, int? take = null);
 
         SubUserBan GetBannedUserInSub(Guid subId, Guid userId);
 

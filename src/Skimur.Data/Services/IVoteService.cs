@@ -6,9 +6,9 @@ namespace Skimur.Data.Services
 {
     public interface IVoteService
     {
-        void VoteForPost(Guid postId, Guid userId, string ipAddress, VoteType voteType);
+        void VoteForPost(Guid postId, Guid userId, string ipAddress, VoteType voteType, DateTime dateCasted);
 
-        void UnvotePost(Guid postId, Guid userId);
+        void UnVotePost(Guid postId, Guid userId);
 
         VoteType? GetVoteForUserOnPost(Guid userId, Guid postId);
 
@@ -16,13 +16,13 @@ namespace Skimur.Data.Services
 
         void GetTotalVotesForPost(Guid postId, out int upVotes, out int downVotes);
 
-        void VoteForComment(Guid commentId, Guid userId, string ipAddress, VoteType voteType);
+        void VoteForComment(Guid commentId, Guid userId, string ipAddress, VoteType voteType, DateTime dateCasted);
 
-        void UnvoteComment(Guid commentId, Guid userId);
+        void UnVoteComment(Guid commentId, Guid userId);
 
         VoteType? GetVoteForUserOnComment(Guid userId, Guid commentId);
 
-        Dictionary<Guid, VoteType> GetVotesOnCommentsByUser(Guid userId, Guid commentId);
+        Dictionary<Guid, VoteType> GetVotesOnCommentsByUser(Guid userId, List<Guid> comments);
 
         void GetTotalVotesForComment(Guid commentId, out int upVotes, out int downVotes);
     }
