@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using ServiceStack.RabbitMq;
+using ServiceStack.Redis;
+using Cassandra;
 using Skimur.Common.Email;
 using Skimur.Common.Utils;
 using Skimur.Backend.Sql;
@@ -14,6 +16,8 @@ using Skimur.Messaging;
 using Skimur.Messaging.Handling;
 using Skimur.Messaging.RabbitMQ;
 using Skimur.Settings;
+using Skimur.Caching;
+using Skimur.Backend.Cassandra;
 
 namespace Skimur.Common
 {
@@ -53,6 +57,47 @@ namespace Skimur.Common
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddSingleton<IPathResolver, PathResolver>();
 
+            services.AddSingleton<ICache, RedisCache>();
+            services.AddSingleton<IRedisClientsManager>(provider =>
+            {
+                if (EnvironmentUtils.IsHeroku)
+                {
+                    // override host and use CLOUDAMQP_URL variable
+                    var redisHost = Environment.GetEnvironmentVariable("REDIS");
+                    return new PooledRedisClientManager(redisHost);
+                }
+                else
+                {
+                    var configuration = provider.GetService<IConfiguration>();
+                    var readWrite = configuration.Get<string>("Skimur:Data:RedisReadWrite");
+                    var read = configuration.Get<string>("Skimur:Data:RedisRead");
+                    return new PooledRedisClientManager(readWrite.Split(";"), read.Split(";"));
+                }
+            });
+
+            services.AddSingleton<ICassandraConnectionStringProvider, CassandraConnectionStringProvider>();
+            services.AddSingleton(provider =>
+            {
+                var connectionProvider = provider.GetService<ICassandraConnectionStringProvider>();
+
+                if (!connectionProvider.HasConnectionString)
+                {
+                    throw new Exception("No connection string configured for cassandra.");
+                }
+
+                return Cluster.Builder()
+                    .AddContactPoint(connectionProvider.ConnectionString)
+                    .WithDefaultKeyspace("skimur")
+                    .Build();
+            });
+            services.AddSingleton(provider =>
+            {
+                var cluster = provider.GetService<Cluster>();
+                return cluster.ConnectAndCreateDefaultKeyspaceIfNotExists();
+            });
+            services.AddSingleton<Backend.Cassandra.Migrations.IMigrationEngine, Backend.Cassandra.Migrations.MigrationEngine>();
+            services.AddSingleton<Backend.Cassandra.Migrations.IMigrationResourceFinder, Backend.Cassandra.Migrations.MigrationResourceFinder>();
+
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 
             services.AddSingleton<IEventDiscovery, EventDiscovery>();
@@ -66,8 +111,6 @@ namespace Skimur.Common
             services.AddSingleton(provider =>
             {
                 var configuration = provider.GetService<IConfiguration>();
-
-
                 var rabbitMqHost = configuration.GetValue<string>("Skimur:Data:RabbitMQHost");
 
                 if (EnvironmentUtils.IsHeroku)
@@ -85,7 +128,7 @@ namespace Skimur.Common
                 {
                     ErrorHandler = exception =>
                     {
-                        Logger.For<RabbitMqServer>().Error("There was an error processing a message.", exception);
+                        Logging.Logger.For<RabbitMqServer>().Error("There was an error processing a message.", exception);
                     }
                 };
             });

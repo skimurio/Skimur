@@ -83,7 +83,7 @@ namespace Skimur.Data.ReadModel
         }
     }
 
-    public class MoreChildrenNode : ICommentNode
+    public class MoreChildren : ICommentNode
     {
         public List<Guid> ChildComments { get; set; }
 
@@ -107,7 +107,7 @@ namespace Skimur.Data.ReadModel
         public List<ICommentNode> Children { get; set; }
         #endregion
 
-        public MoreChildrenNode()
+        public MoreChildren()
         {
             ChildComments = new List<Guid>();
         }
