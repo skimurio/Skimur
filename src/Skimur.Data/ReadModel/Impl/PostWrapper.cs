@@ -109,5 +109,10 @@ namespace Skimur.Data.ReadModel.Impl
 
             return posts;
         }
+
+        public PostWrapped Wrap(Guid postId, User currentUser)
+        {
+            return Wrap(new List<Guid> { postId }, currentUser)[0];
+        }
     }
 }

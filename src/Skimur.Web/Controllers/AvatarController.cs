@@ -1,5 +1,5 @@
-﻿using System.Web;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Skimur.Web.Infrastructure;
 using Skimur.Web.Services;
 
 namespace Skimur.Web.Controllers
@@ -22,7 +22,7 @@ namespace Skimur.Web.Controllers
                 return File(avatarStream, "image/jpeg");
             }
 
-            throw new HttpException(404, "Not found");
+            throw new NotFoundException();
         }
     }
 }

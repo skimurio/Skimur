@@ -54,7 +54,7 @@ namespace Skimur.Data.ReadModel.Impl
                     }
                     else
                     {
-                        var currentModeratorInfo = subModeratorInfo.ContainsKey(item.Sub.id)
+                        var currentModeratorInfo = subModeratorInfo.ContainsKey(item.Sub.Id)
                             ? subModeratorInfo[item.Sub.Id]
                             : null;
 

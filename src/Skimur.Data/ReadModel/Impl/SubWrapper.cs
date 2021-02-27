@@ -47,14 +47,14 @@ namespace Skimur.Data.ReadModel.Impl
             {
                 if (currentUser != null)
                 {
-                    item.IsSubscribed = subscribed.Contains(item.Sub.id);
+                    item.IsSubscribed = subscribed.Contains(item.Sub.Id);
                 }
 
                 if (item.Sub.Subscribers < 100 && !(currentUser != null && currentUser.IsAdmin))
                 {
                     item.FuzzSubscribers(_cache.GetAcquire("sub." + item.Sub.Id + ".fuzzed",
                         TimeSpan.FromSeconds(30),
-                        () => StringHelper.Fuzz(item.Sub.Subscribers));
+                        () => StringHelper.Fuzz(item.Sub.Subscribers)));
                 }
             }
 

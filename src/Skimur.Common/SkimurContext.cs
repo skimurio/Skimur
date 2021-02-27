@@ -69,8 +69,8 @@ namespace Skimur.Common
                 else
                 {
                     var configuration = provider.GetService<IConfiguration>();
-                    var readWrite = configuration.Get<string>("Skimur:Data:RedisReadWrite");
-                    var read = configuration.Get<string>("Skimur:Data:RedisRead");
+                    var readWrite = configuration.GetValue<string>("Skimur:Data:RedisReadWrite");
+                    var read = configuration.GetValue<string>("Skimur:Data:RedisRead");
                     return new PooledRedisClientManager(readWrite.Split(";"), read.Split(";"));
                 }
             });

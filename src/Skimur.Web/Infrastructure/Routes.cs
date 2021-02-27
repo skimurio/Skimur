@@ -11,6 +11,12 @@ namespace Skimur.Web.Infrastructure
         public static void Register(IEndpointRouteBuilder endpoints)
         {
             endpoints.MapRouteShim(
+                name: "Subs",
+                url: "subs",
+                defaults: new { controller = "Subs", action = "Popular" });
+
+
+            endpoints.MapRouteShim(
                 name: "Default",
                 url: "{controller}/{action}/{id?}",
                 defaults: new { controller = "Home", action = "Index" }
