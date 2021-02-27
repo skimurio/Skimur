@@ -10,8 +10,8 @@
     <Folder Include="Compiler\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Jering.Javascript.NodeJS" Version="5.4.0" />
-    <PackageReference Include="Markdig" Version="0.18.3" />
+    <PackageReference Include="Jering.Javascript.NodeJS" Version="5.4.4" />
+    <PackageReference Include="Markdig" Version="0.23.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj" />
