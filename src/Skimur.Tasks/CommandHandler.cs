@@ -83,5 +83,47 @@ namespace Skimur.Tasks
 
             Console.WriteLine($"Successfully updated admin status for the user {user.UserName}");
         }
+
+        [ArgActionMethod, ArgDescription("Resets the password for a specific user")]
+        public void ResetPassword(string username)
+        {
+            var connectionProvider = SkimurContext.ServiceProvider.GetRequiredService<IDbConnectionProvider>();
+            var passwordManager = SkimurContext.ServiceProvider.GetRequiredService<IPasswordManager>();
+
+            var password = CreateRandomPassword(10);
+
+            // attempt to find the user with the provided username
+            var user = connectionProvider.Perform(conn => conn.Single<User>(x => x.UserName.ToLower() == username.ToLower()));
+            if (user == null)
+            {
+                // no user found
+                Console.WriteLine("No user with that username found.");
+                return;
+            }
+
+            // update password
+            connectionProvider.Perform(conn => conn.Update<User>(new
+            {
+                PasswordHash = passwordManager.HashPassword(password)
+            }, x => x.Id == user.Id));
+
+            Console.WriteLine($"Successfully updated password for {user.UserName} to {password}");
+        }
+
+        private string CreateRandomPassword(int length = 15)
+        {
+            // Create a string of characters, numbers, special characters that allowed in the password  
+            string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?_-";
+            Random random = new Random();
+
+            // Select one random character at a time from the string  
+            // and create an array of chars  
+            char[] chars = new char[length];
+            for (int i = 0; i < length; i++)
+            {
+                chars[i] = validChars[random.Next(0, validChars.Length)];
+            }
+            return new string(chars);
+        }
     }
 }
