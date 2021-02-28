@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using ServiceStack;
 using ServiceStack.RabbitMq;
 using ServiceStack.Redis;
 using Cassandra;
@@ -49,6 +50,14 @@ namespace Skimur.Common
         {
             // register our IServiceCollection
             services.AddSingleton(provider => services);
+
+            // license our stuff
+            Licensing.RegisterLicense("TRIAL30WEB-e1JlZjpUUklBTDMwV0VCLE5hbWU6Mi8yOC8yMDIxIGM1MGU3M" +
+                "zllZWRjNzRjZTg4ZTBkYWEwNTViODFlYTZiLFR5cGU6VHJpYWwsTWV0YTowLEhhc2g6UnUw" +
+                "Wm5OeksxUGdyMFViTjZzWWQrK2FvTVVBaFIwQ1FFWGNvM2NUZkF6V3JmUStqZzRmeUgrRXpmM" +
+                "U54SzltQTVkdTJXZWRLKzRKL2dmTWZYaytvWmNkdTNZbHNiZGZKR3JOVkVxTlNGaDE5aHQxQ2pZTn" +
+                "FRMXA5R2dwQzdBb2ltQjhGdDlucE9WMWpYdWkveUltNXJLNTZWdW1TWXBFQ0s1UDlBOWtOcXZzP" +
+                "SxFeHBpcnk6MjAyMS0wMy0zMH0=");
 
             // all the default services
             services.AddSingleton<IMapper, Mapper>();
@@ -123,6 +132,9 @@ namespace Skimur.Common
                 {
                     throw new Exception("You must provide a 'Skimur:Data:RabbitMQHost' app setting.");
                 }
+
+                var rabbitMQUri = new Uri(rabbitMqHost);
+                var userInfo = rabbitMQUri.UserInfo.Split(":");
 
                 return new RabbitMqServer(rabbitMqHost)
                 {

@@ -16,9 +16,9 @@
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="5.10.4" />
     <PackageReference Include="ServiceStack.RabbitMq" Version="5.10.4" />
-    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
     <PackageReference Include="ServiceStack.Text" Version="5.10.4" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
