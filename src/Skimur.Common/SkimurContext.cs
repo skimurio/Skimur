@@ -52,12 +52,10 @@ namespace Skimur.Common
             services.AddSingleton(provider => services);
 
             // license our stuff
-            Licensing.RegisterLicense("TRIAL30WEB-e1JlZjpUUklBTDMwV0VCLE5hbWU6Mi8yOC8yMDIxIGM1MGU3M" +
-                "zllZWRjNzRjZTg4ZTBkYWEwNTViODFlYTZiLFR5cGU6VHJpYWwsTWV0YTowLEhhc2g6UnUw" +
-                "Wm5OeksxUGdyMFViTjZzWWQrK2FvTVVBaFIwQ1FFWGNvM2NUZkF6V3JmUStqZzRmeUgrRXpmM" +
-                "U54SzltQTVkdTJXZWRLKzRKL2dmTWZYaytvWmNkdTNZbHNiZGZKR3JOVkVxTlNGaDE5aHQxQ2pZTn" +
-                "FRMXA5R2dwQzdBb2ltQjhGdDlucE9WMWpYdWkveUltNXJLNTZWdW1TWXBFQ0s1UDlBOWtOcXZzP" +
-                "SxFeHBpcnk6MjAyMS0wMy0zMH0=");
+            Licensing.RegisterLicense("1001-e1JlZjoxMDAxLE5hbWU6VGVzdCBCdXNpbmVzcyxUeXBlOkJ1c2luZXNzLEhhc2g6UHVNTVRPclhv" +
+                "T2ZIbjQ5MG5LZE1mUTd5RUMzQnBucTFEbTE3TDczVEF4QUNMT1FhNXJMOWkzVjFGL2ZkVTE3Q2pDNENqTkQyUktRWmhvUVBhYTBiek" +
+                "JGUUZ3ZE5aZHFDYm9hL3lydGlwUHI5K1JsaTBYbzNsUC85cjVJNHE5QVhldDN6QkE4aTlvdldrdTgyTk1relY2eis2dFFqTThYN2lmc" +
+                "0JveHgycFdjPSxFeHBpcnk6MjAxMy0wMS0wMX0=");
 
             // all the default services
             services.AddSingleton<IMapper, Mapper>();
