@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS builder
+FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS builder
 WORKDIR /app
 
 # Copy files over and restore
@@ -9,7 +9,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine
 WORKDIR /app
 COPY --from=builder /app/out .
 ENV ASPNETCORE_ENVIRONMENT Production

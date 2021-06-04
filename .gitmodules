@@ -1,0 +1,12 @@
+[submodule "libs/ServiceStack"]
+	path = libs/ServiceStack
+	url = https://github.com/skimurio/ServiceStack.git
+[submodule "libs/ServiceStack.OrmLite"]
+	path = libs/ServiceStack.OrmLite
+	url = https://github.com/skimurio/ServiceStack.OrmLite.git
+[submodule "libs/ServiceStack.Text"]
+	path = libs/ServiceStack.Text
+	url = https://github.com/skimurio/ServiceStack.Text.git
+[submodule "libs/ServiceStack.Redis"]
+	path = libs/ServiceStack.Redis
+	url = https://github.com/skimurio/ServiceStack.Redis.git

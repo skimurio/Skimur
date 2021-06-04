@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,13 +14,13 @@
     <Folder Include="Caching\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ServiceStack" Version="5.10.4" />
-    <PackageReference Include="ServiceStack.RabbitMq" Version="5.10.4" />
-    <PackageReference Include="ServiceStack.Text" Version="5.10.4" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.1.2" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.Core.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.Core.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Core.csproj" />
   </ItemGroup>
 </Project>
