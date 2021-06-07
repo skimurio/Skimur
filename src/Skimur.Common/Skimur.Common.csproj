@@ -12,6 +12,9 @@
     <ProjectReference Include="..\Skimur.Backend\Skimur.Backend.csproj" />
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
     <ProjectReference Include="..\Skimur\Skimur.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.Source.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Source.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.Source.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.15" />

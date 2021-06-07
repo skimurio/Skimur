@@ -25,5 +25,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Source.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.Source.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.Source.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.Source.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack.Redis\src\ServiceStack.Redis\ServiceStack.Redis.Source.csproj" />
   </ItemGroup>
 </Project>
