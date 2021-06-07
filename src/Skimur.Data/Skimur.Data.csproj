@@ -17,7 +17,6 @@
     <Folder Include="Events\Handlers\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ServiceStack.Interfaces" Version="5.11.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.6" />

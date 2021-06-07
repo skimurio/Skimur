@@ -9,16 +9,12 @@
     <PackageReference Include="PowerArgs" Version="3.6.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
-    <PackageReference Include="ServiceStack" Version="5.11.0" />
-    <PackageReference Include="ServiceStack.OrmLite" Version="5.11.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj" />
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
     <ProjectReference Include="..\Skimur.Backend\Skimur.Backend.csproj" />
     <ProjectReference Include="..\Skimur.Data\Skimur.Data.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Core.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

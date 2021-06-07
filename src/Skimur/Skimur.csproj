@@ -19,8 +19,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.Core.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.Core.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Core.csproj" />
   </ItemGroup>
 </Project>
