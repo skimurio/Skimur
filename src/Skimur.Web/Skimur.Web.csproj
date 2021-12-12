@@ -23,6 +23,7 @@
     <Folder Include="Utils\" />
     <Folder Include="Views\Subs\" />
     <Folder Include="ViewModels\Subs\" />
+    <Folder Include="Views\Posts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj">
@@ -49,5 +50,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0009" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Posts\" />
   </ItemGroup>
 </Project>
