@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.7.10" />
-    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="log4net" Version="2.0.14" />
     <PackageReference Include="Microsoft.NETCore.Targets" Version="6.0.0-preview.4.21253.7" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
