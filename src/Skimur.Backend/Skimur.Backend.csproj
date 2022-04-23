@@ -24,11 +24,11 @@
     <Folder Include="Cassandra\Migrations\DB\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack\ServiceStack.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack.Redis\src\ServiceStack.Redis\ServiceStack.Redis.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.csproj" />
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Source.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.Source.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.Source.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.Source.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack.Redis\src\ServiceStack.Redis\ServiceStack.Redis.Source.csproj" />
   </ItemGroup>
 </Project>

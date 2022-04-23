@@ -9,12 +9,11 @@
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Skimur.Backend\Skimur.Backend.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack\ServiceStack.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj" />
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
-    <ProjectReference Include="..\Skimur\Skimur.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.Source.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Source.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.Source.csproj" />
+    <ProjectReference Include="..\Skimur.Backend\Skimur.Backend.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.15" />

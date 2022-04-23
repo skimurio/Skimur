@@ -11,12 +11,12 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack\ServiceStack.csproj" />
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj" />
-    <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
     <ProjectReference Include="..\Skimur.Backend\Skimur.Backend.csproj" />
+    <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
     <ProjectReference Include="..\Skimur.Data\Skimur.Data.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.Source.csproj" />
-    <ProjectReference Include="..\..\libs\ServiceStack\src\ServiceStack\ServiceStack.Source.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
