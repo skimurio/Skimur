@@ -1,39 +1,43 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Data", "src\Skimur.Data\Skimur.Data.csproj", "{620A2009-80A7-44C2-961A-11A727530745}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur.Data", "src\Skimur.Data\Skimur.Data.csproj", "{620A2009-80A7-44C2-961A-11A727530745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Web", "src\Skimur.Web\Skimur.Web.csproj", "{833BF931-33BA-4D46-A4CE-82DF139C2412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur.Web", "src\Skimur.Web\Skimur.Web.csproj", "{833BF931-33BA-4D46-A4CE-82DF139C2412}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Common", "src\Skimur.Common\Skimur.Common.csproj", "{F54E1CE2-2502-4FAB-B0B3-9FEB06038D96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur.Common", "src\Skimur.Common\Skimur.Common.csproj", "{F54E1CE2-2502-4FAB-B0B3-9FEB06038D96}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0295E9FE-F5DF-435F-B1D4-1C31A81FF7B8} = {0295E9FE-F5DF-435F-B1D4-1C31A81FF7B8}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Logging", "src\Skimur.Logging\Skimur.Logging.csproj", "{210D41A3-8917-4B67-9F5B-263DFE051972}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur.Logging", "src\Skimur.Logging\Skimur.Logging.csproj", "{210D41A3-8917-4B67-9F5B-263DFE051972}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Tasks", "src\Skimur.Tasks\Skimur.Tasks.csproj", "{E180B1D0-4B76-4464-8685-435D61D16164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur.Tasks", "src\Skimur.Tasks\Skimur.Tasks.csproj", "{E180B1D0-4B76-4464-8685-435D61D16164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Backend", "src\Skimur.Backend\Skimur.Backend.csproj", "{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur.Backend", "src\Skimur.Backend\Skimur.Backend.csproj", "{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur.Markdown", "src\Skimur.Markdown\Skimur.Markdown.csproj", "{F426B7FB-BBD6-45D0-BC81-B95A3E9EC6A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur.Markdown", "src\Skimur.Markdown\Skimur.Markdown.csproj", "{F426B7FB-BBD6-45D0-BC81-B95A3E9EC6A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skimur", "src\Skimur\Skimur.csproj", "{0295E9FE-F5DF-435F-B1D4-1C31A81FF7B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skimur", "src\Skimur\Skimur.csproj", "{0295E9FE-F5DF-435F-B1D4-1C31A81FF7B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text", "libs\ServiceStack\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.csproj", "{99506A01-FF65-48B3-A129-4DD08FDFB229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Text", "libs\ServiceStack\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.csproj", "{99506A01-FF65-48B3-A129-4DD08FDFB229}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack", "libs\ServiceStack\ServiceStack\src\ServiceStack\ServiceStack.csproj", "{505DACC0-52C5-4914-BE07-072302C7C1E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack", "libs\ServiceStack\ServiceStack\src\ServiceStack\ServiceStack.csproj", "{505DACC0-52C5-4914-BE07-072302C7C1E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Client", "libs\ServiceStack\ServiceStack\src\ServiceStack.Client\ServiceStack.Client.csproj", "{7973651E-108F-4A82-82CA-F62A525FC6D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Client", "libs\ServiceStack\ServiceStack\src\ServiceStack.Client\ServiceStack.Client.csproj", "{7973651E-108F-4A82-82CA-F62A525FC6D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Common", "libs\ServiceStack\ServiceStack\src\ServiceStack.Common\ServiceStack.Common.csproj", "{B0627C54-576F-4A2D-8383-BF36B67DF373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Common", "libs\ServiceStack\ServiceStack\src\ServiceStack.Common\ServiceStack.Common.csproj", "{B0627C54-576F-4A2D-8383-BF36B67DF373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Interfaces", "libs\ServiceStack\ServiceStack\src\ServiceStack.Interfaces\ServiceStack.Interfaces.csproj", "{E15707B1-28A5-47C7-9D85-613570025ACB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Interfaces", "libs\ServiceStack\ServiceStack\src\ServiceStack.Interfaces\ServiceStack.Interfaces.csproj", "{E15707B1-28A5-47C7-9D85-613570025ACB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.RabbitMq", "libs\ServiceStack\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.csproj", "{3D027E3C-FD0B-49D8-A7BA-6E922DDDF536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.RabbitMq", "libs\ServiceStack\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.csproj", "{3D027E3C-FD0B-49D8-A7BA-6E922DDDF536}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Redis", "libs\ServiceStack\ServiceStack.Redis\src\ServiceStack.Redis\ServiceStack.Redis.csproj", "{546F79C1-BD5E-4B6C-AE9D-06122339DACB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Redis", "libs\ServiceStack\ServiceStack.Redis\src\ServiceStack.Redis\ServiceStack.Redis.csproj", "{546F79C1-BD5E-4B6C-AE9D-06122339DACB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.OrmLite", "libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj", "{7EA6CCEF-CC23-4F3D-88A5-55FE490A224B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.OrmLite", "libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.csproj", "{7EA6CCEF-CC23-4F3D-88A5-55FE490A224B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.OrmLite.PostgreSQL", "libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.csproj", "{462DE172-54AE-41E4-81FA-5E69751F1E9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.OrmLite.PostgreSQL", "libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.csproj", "{462DE172-54AE-41E4-81FA-5E69751F1E9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +65,6 @@ Global
 		{E180B1D0-4B76-4464-8685-435D61D16164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E180B1D0-4B76-4464-8685-435D61D16164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E180B1D0-4B76-4464-8685-435D61D16164}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1D83F3D-D8CA-46A4-BDFF-D7B1C3BA75A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{895A5C41-65BB-4317-9AA1-5BCCBBAC6195}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -113,5 +113,11 @@ Global
 		{462DE172-54AE-41E4-81FA-5E69751F1E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{462DE172-54AE-41E4-81FA-5E69751F1E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{462DE172-54AE-41E4-81FA-5E69751F1E9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEFD0380-148E-4D31-9E2D-F43296E5E02F}
 	EndGlobalSection
 EndGlobal

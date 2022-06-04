@@ -18,7 +18,7 @@
     <PackageReference Include="RabbitMQ.Client" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.csproj" />
+    <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.csproj" />
     <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack\ServiceStack.csproj" />
     <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.csproj" />
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />

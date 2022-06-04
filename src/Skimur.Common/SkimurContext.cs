@@ -52,10 +52,9 @@ namespace Skimur.Common
             services.AddSingleton(provider => services);
 
             // license our stuff
-            Licensing.RegisterLicense("1001-e1JlZjoxMDAxLE5hbWU6VGVzdCBCdXNpbmVzcyxUeXBlOkJ1c2luZXNzLEhhc2g6UHVNTVRPclhv" +
-                "T2ZIbjQ5MG5LZE1mUTd5RUMzQnBucTFEbTE3TDczVEF4QUNMT1FhNXJMOWkzVjFGL2ZkVTE3Q2pDNENqTkQyUktRWmhvUVBhYTBiek" +
-                "JGUUZ3ZE5aZHFDYm9hL3lydGlwUHI5K1JsaTBYbzNsUC85cjVJNHE5QVhldDN6QkE4aTlvdldrdTgyTk1relY2eis2dFFqTThYN2lmc" +
-                "0JveHgycFdjPSxFeHBpcnk6MjAxMy0wMS0wMX0=");
+            Licensing.RegisterLicense("OSS MIT 2022 https://github.com/skimurio/Skimur b0htJ8M14XA8Mw5dhE" +
+                "0OW2AFYBIG1gT4SolLtuqfalXm2YL4+jnasPb0aI7hmSJ85xxoPZu0IxxVcMQSXQPnGtWPqnH26KnOcERTcjVXZzN7P" +
+                "QkceZguW5gL7RhGq0CrIfPR3Qrzrykn6xplICwKoLrtZv2/M4e/cKwNxXeRlCk=");
 
             // all the default services
             services.AddSingleton<IMapper, Mapper>();
