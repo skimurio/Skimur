@@ -128,7 +128,7 @@ namespace Skimur.Data.Services.Impl
                 switch (sortby)
                 {
                     case PostsSortBy.Hot:
-                        orders.Add("host(vote_up_count, vote_down_count, created_at)");
+                        orders.Add("hot(vote_up_count, vote_down_count, created_at)");
                         orders.Add("created_at");
                         break;
                     case PostsSortBy.New:
