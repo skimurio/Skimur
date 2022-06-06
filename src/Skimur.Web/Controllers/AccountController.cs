@@ -372,7 +372,119 @@ namespace Skimur.Web.Controllers
 
         #region Two Factor Authentication
 
-        //todo: Add support for to factor authentication
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
+        {
+            // Ensure the user has gone through the username & password screen first
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+
+            if (user == null)
+            {
+                return View("Error");
+            }
+
+            var model = new LoginWith2faViewModel { RememberMe = rememberMe };
+            ViewData["ReturnUrl"] = returnUrl;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginWith2fa(LoginWith2faViewModel model, bool rememberMe, string returnUrl = null)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                _logger.LogWarning("Unable to load user with ID {UserId}.", _userManager.GetUserId(User));
+                return View("Error");
+            }
+
+            var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
+
+            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+                return RedirectToLocal(returnUrl);
+            }
+            else if (result.IsLockedOut)
+            {
+                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                return View("Lockout");
+            }
+            else
+            {
+                _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
+                ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
+                return View();
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
+        {
+            // Ensure the user has gone through the username & password screen first
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                _logger.LogWarning("Unable to load two-factor authentication user.");
+                return View("Error");
+            }
+
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginWithRecoveryCode(LoginWithRecoveryCodeViewModel model, string returnUrl = null)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                _logger.LogWarning("Unable to load two-factor authentication user.");
+                return View("Error");
+            }
+
+            var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
+
+            var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
+                return RedirectToLocal(returnUrl);
+            }
+
+            if (result.IsLockedOut)
+            {
+                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                return View("Lockout");
+            }
+            else
+            {
+                _logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
+                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+                return View();
+            }
+        }
+
 
         #endregion
 

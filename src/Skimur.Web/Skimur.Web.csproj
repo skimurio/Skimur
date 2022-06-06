@@ -24,6 +24,8 @@
     <Folder Include="Views\Subs\" />
     <Folder Include="ViewModels\Subs\" />
     <Folder Include="Views\Posts\" />
+    <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\lib\qrcodejs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skimur.Common\Skimur.Common.csproj">
@@ -53,5 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Posts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\lib\" />
+    <Content Remove="wwwroot\lib\qrcodejs\" />
   </ItemGroup>
 </Project>
