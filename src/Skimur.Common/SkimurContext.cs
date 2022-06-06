@@ -66,10 +66,10 @@ namespace Skimur.Common
             services.AddSingleton<ICache, RedisCache>();
             services.AddSingleton<IRedisClientsManager>(provider =>
             {
-                if (EnvironmentUtils.IsHeroku)
+                if (EnvironmentUtils.IsHeroku || EnvironmentUtils.IsContainer)
                 {
                     // override host and use CLOUDAMQP_URL variable
-                    var redisHost = Environment.GetEnvironmentVariable("REDIS");
+                    var redisHost = Environment.GetEnvironmentVariable("REDIS_URL");
                     return new PooledRedisClientManager(redisHost);
                 }
                 else
@@ -119,7 +119,7 @@ namespace Skimur.Common
                 var configuration = provider.GetService<IConfiguration>();
                 var rabbitMqHost = configuration.GetValue<string>("Skimur:Data:RabbitMQHost");
 
-                if (EnvironmentUtils.IsHeroku)
+                if (EnvironmentUtils.IsHeroku || EnvironmentUtils.IsContainer)
                 {
                     // override host and use CLOUDAMQP_URL variable
                     rabbitMqHost = Environment.GetEnvironmentVariable("CLOUDAMQP_URL");
