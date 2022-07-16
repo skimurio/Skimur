@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Skimur.Web.Infrastructure;
 using Skimur.Common.Utils;
@@ -52,6 +53,10 @@ namespace Skimur.Web
                  new DataRegistrar(),
                  new MessagingRegistrar());
 
+            services.AddApiVersioning(options => { 
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+            });
             //services.AddControllersWithViews();
         }
 
@@ -73,10 +78,12 @@ namespace Skimur.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseApiVersioning();
 
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
+
 
             app.UseEndpoints(endpoints =>
             {

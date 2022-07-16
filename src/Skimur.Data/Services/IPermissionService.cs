@@ -23,6 +23,8 @@ namespace Skimur.Data.Services
 
         bool CanUserManageSubStyles(User user, Guid subId);
 
+        bool CanUserManageSubWiki(User user, Guid subId);
+
         ModeratorPermissions? GetUserPermissionsForSub(User user, Guid subId);
     }
 }

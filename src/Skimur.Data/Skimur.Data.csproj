@@ -5,10 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="ReadModel\Wiki\" />
     <Folder Include="Services\" />
     <Folder Include="Utils\" />
-    <Folder Include="ReadModel\" />
     <Folder Include="ReadModel\Impl\" />
     <Folder Include="Commands\" />
     <Folder Include="Commands\Handlers\" />

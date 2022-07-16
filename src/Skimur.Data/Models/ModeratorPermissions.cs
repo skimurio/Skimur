@@ -12,6 +12,7 @@ namespace Skimur.Data.Models
         Flair = 1 << 3,
         Mail = 1 << 4,
         Posts = 1 << 5,
-        Styles = 1 << 6
+        Styles = 1 << 6,
+        Wiki = 1 << 7
     }
 }

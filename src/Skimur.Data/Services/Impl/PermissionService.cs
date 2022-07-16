@@ -77,6 +77,13 @@ namespace Skimur.Data.Services.Impl
             return CanUserManageSubPosts(user, post.SubId);
         }
 
+        public bool CanUserManageSubWiki(User user, Guid subId)
+        {
+            var permissions = GetUserPermissionsForSub(user, subId);
+            if (permissions == null) return false;
+            return permissions.HasPermission(ModeratorPermissions.Wiki);
+        }
+
         public ModeratorPermissions? GetUserPermissionsForSub(User user, Guid subId)
         {
             return _moderationService.GetUserPermissionsForSub(user, subId);
