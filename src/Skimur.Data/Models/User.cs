@@ -118,6 +118,11 @@ namespace Skimur.Data.Models
         public bool IsAdmin { get; set; }
 
         /// <summary>
+        /// Is this user a system user?
+        /// </summary>
+        public bool IsSystem { get; set; }
+
+        /// <summary>
         /// Does the user want to see NSFW content?
         /// </summary>
         public bool ShowNsfw { get; set; }

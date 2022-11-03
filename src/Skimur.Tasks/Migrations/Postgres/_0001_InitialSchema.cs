@@ -107,6 +107,7 @@ $$ language sql immutable;");
                 avatar_identifier text,
                 show_nsfw boolean NOT NULL default false,
                 is_admin boolean NOT NULL default false,
+                is_system boolean NOT NULL default false,
                 styles boolean NOT NULL default true,
                 registration_ip text,
                 current_ip text,

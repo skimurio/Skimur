@@ -53,6 +53,22 @@ namespace Skimur.Web.Controllers
 
             if (ModelState.IsValid)
             {
+
+                var user = await _userManager.FindByNameAsync(model.Username);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid credentials");
+                    return View(model);
+                }
+
+                if (user.IsSystem)
+                {
+                    ModelState.AddModelError(string.Empty, "You can not login to a system account");
+                    _logger.LogWarning("User tried to log into system account.");
+                    return View(model);
+                }
+
                 // this doesn't count login failure towards lockout
                 // to enable password failure to triger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: false);

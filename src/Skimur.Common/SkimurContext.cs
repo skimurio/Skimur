@@ -11,6 +11,7 @@ using Skimur.Common.Email;
 using Skimur.Common.Utils;
 using Skimur.Backend.Sql;
 using Skimur.Backend.Postgres;
+using Skimur.Backend.Redis;
 using Skimur.Logging;
 using Skimur.IO;
 using Skimur.Messaging;
@@ -63,6 +64,7 @@ namespace Skimur.Common
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddSingleton<IPathResolver, PathResolver>();
 
+            services.AddSingleton<IRedisConnectionStringProvider, RedisConnectionStringProvider>();
             services.AddSingleton<ICache, RedisCache>();
             services.AddSingleton<IRedisClientsManager>(provider =>
             {
@@ -74,12 +76,18 @@ namespace Skimur.Common
                 }
                 else
                 {
-                    var configuration = provider.GetService<IConfiguration>();
-                    var readWrite = configuration.GetValue<string>("Skimur:Data:RedisReadWrite");
-                    var read = configuration.GetValue<string>("Skimur:Data:RedisRead");
-                    var redisHost = configuration.GetValue<string>("Skimur:Data:Redis");
+                    var configuration = provider.GetService<IRedisConnectionStringProvider>();
+                    //var readWrite = configuration.GetValue<string>("Skimur:Data:RedisReadWrite");
+                    //var read = configuration.GetValue<string>("Skimur:Data:RedisRead");
+                    //var redisHost = configuration.GetValue<string>("Skimur:Data:Redis", null);
                     //return new PooledRedisClientManager(readWrite.Split(";"), read.Split(";"));
-                    return new PooledRedisClientManager(redisHost);
+
+                    if (!configuration.HasConnectionString)
+                    {
+                        throw new Exception("You must provide a 'Skimur:Data:Redis' app setting.");
+                    }
+
+                    return new PooledRedisClientManager(configuration.ConnectionString);
                 }
             });
 

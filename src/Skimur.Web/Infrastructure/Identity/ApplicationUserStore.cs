@@ -230,7 +230,7 @@ namespace Skimur.Web.Infrastructure.Identity
         public Task<IList<string>> GetRolesAsync(User user, CancellationToken cancellationToken)
         {
             var result = new List<string>();
-            if (user.IsAdmin)
+            if (user.IsAdmin || user.IsSystem)
                 result.Add("Admin");
 
             return Task.FromResult((IList<string>)result);
@@ -244,7 +244,7 @@ namespace Skimur.Web.Infrastructure.Identity
                 throw new ArgumentNullException(nameof(user));
 
             if (string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase))
-                return Task.FromResult(user.IsAdmin);
+                return Task.FromResult(user.IsAdmin || user.IsSystem);
 
             return Task.FromResult(false);
         }

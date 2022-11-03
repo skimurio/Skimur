@@ -97,6 +97,7 @@ namespace Skimur.Data.Models
         /// <summary>
         /// How many reports are there currently for this comment?
         /// </summary>
+        [Alias("NumberOfReports")]
         public int Reports { get; set; }
 
         /// <summary>

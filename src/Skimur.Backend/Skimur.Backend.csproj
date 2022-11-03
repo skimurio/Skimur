@@ -22,6 +22,7 @@
     <Folder Include="Cassandra\" />
     <Folder Include="Cassandra\Migrations\" />
     <Folder Include="Cassandra\Migrations\DB\" />
+    <Folder Include="Redis\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack\ServiceStack.csproj" />
@@ -30,5 +31,8 @@
     <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack\src\ServiceStack.RabbitMq\ServiceStack.RabbitMq.csproj" />
     <ProjectReference Include="..\..\libs\ServiceStack\ServiceStack.OrmLite\src\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.csproj" />
     <ProjectReference Include="..\Skimur.Logging\Skimur.Logging.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Redis\" />
   </ItemGroup>
 </Project>
