@@ -20,7 +20,7 @@ namespace Skimur.Tasks.Migrations.Postgres
                 CREATE TABLE wiki_pages
                 (
                     id uuid NOT NULL,
-                    sub_id uuid NOT NULL REFERENCES users(id),
+                    sub_id uuid NOT NULL REFERENCES subs(id),
                     name text,
                     description text,
                     content text,
