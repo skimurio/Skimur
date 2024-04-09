@@ -21,8 +21,6 @@
     <Folder Include="ViewModels\Manage\" />
     <Folder Include="Utils\" />
     <Folder Include="Views\Subs\" />
-    <Folder Include="ViewModels\Subs\" />
-    <Folder Include="Views\Posts\" />
     <Folder Include="wwwroot\lib\" />
     <Folder Include="wwwroot\lib\qrcodejs\" />
   </ItemGroup>

@@ -21,6 +21,11 @@ namespace Skimur.Web.Infrastructure
                 defaults: new { controller = "Posts", action = "Frontpage" });
 
             endpoints.MapRouteShim(
+                name: "SubsUnmoderated",
+                url: "s/{subName}/details/unmoderated",
+                defaults: new { controller = "Posts", action = "Unmoderated" });
+
+            endpoints.MapRouteShim(
                 name: "Avatar",
                 url: "avatar/{key}",
                 defaults: new { controller = "Avatar", action = "Key" });

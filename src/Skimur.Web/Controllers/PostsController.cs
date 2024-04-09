@@ -24,6 +24,10 @@ namespace Skimur.Web.Controllers
         private readonly ICommandBus _commandBus;
         private readonly IUserContext _userContext;
         private readonly IContextService _contextService;
+        private readonly ICommentTreeContextBuilder _commentTreeContextBuilder;
+        private readonly ICommentDao _commentDao;
+        private readonly ISubActivityDao _subActivityDao;
+        private readonly ICommentNodeHierarchyBuilder _commentNodeHierarchyBuilder;
         private static Guid? _annoncementSubId;
 
         public PostsController(ISubDao subDao,
@@ -32,7 +36,11 @@ namespace Skimur.Web.Controllers
             IPostWrapper postWrapper,
             ICommandBus commandBus,
             IUserContext userContext,
-            IContextService contextService)
+            IContextService contextService,
+            ICommentTreeContextBuilder commentTreeContextBuilder,
+            ICommentDao commentDao,
+            ISubActivityDao subActivityDao,
+            ICommentNodeHierarchyBuilder commentNodeHierarchyBuilder)
         {
             _subDao = subDao;
             _subWrapper = subWrapper;
@@ -41,6 +49,35 @@ namespace Skimur.Web.Controllers
             _commandBus = commandBus;
             _userContext = userContext;
             _contextService = contextService;
+            _commentTreeContextBuilder = commentTreeContextBuilder;
+            _commentDao = commentDao;
+            _subActivityDao = subActivityDao;
+            _commentNodeHierarchyBuilder = commentNodeHierarchyBuilder;
+        }
+
+        [Authorize]
+        public ActionResult Unmoderated(string subName)
+        {
+            if (string.IsNullOrEmpty(subName))
+            {
+                throw new NotFoundException();
+            }
+
+            var sub = _subDao.GetSubByName(subName);
+
+            if (sub == null)
+            {
+                throw new NotFoundException();
+            }
+
+            var postIds = _postDao.GetUnmoderatedPosts(new List<Guid> { sub.Id }, take: 30);
+
+            var model = new SubPostsModel();
+            model.Sub = _subWrapper.Wrap(sub.Id, _userContext.CurrentUser);
+            model.SortBy = PostsSortBy.New;
+            model.Posts = new PagedList<PostWrapped>(_postWrapper.Wrap(postIds, _userContext.CurrentUser), 0, 30, postIds.HasMore);
+
+            return View(model);
         }
 
         public ActionResult Frontpage(PostsSortBy? sort, PostsTimeFilter? time, int? pageNumber, int? pageSize)
