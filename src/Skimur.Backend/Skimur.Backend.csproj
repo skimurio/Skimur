@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceStack.OrmLite" Version="8.1.2" />
-    <PackageReference Include="Npgsql" Version="8.0.2" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
     <PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="8.1.2" />
     <PackageReference Include="CassandraCSharpDriver" Version="3.17.1" />
     <PackageReference Include="ServiceStack.RabbitMq" Version="8.1.2" />
