@@ -35,7 +35,6 @@ namespace Skimur.Backend.Sql
                 if (UseSSL)
                 {
                     builder.SslMode = SslMode.Prefer;
-                    builder.TrustServerCertificate = true;
                 }
 
                 _connectionString = builder.ToString();
